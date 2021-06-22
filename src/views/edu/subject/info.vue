@@ -14,7 +14,7 @@
 
     <!-- 课程信息发布 -->
     <div>
-      <information v-if="active == 1"></information>
+      <information v-if="active == 1" @courseInfo="getCourseInfo"></information>
       <chapter v-if="active == 2"></chapter>
       <publish v-if="active == 3"></publish>
     </div>
@@ -33,6 +33,7 @@ import Information from "./components/info.vue";
 import Chapter from "./components/chapter.vue";
 import Publish from "./components/publish.vue";
 import eduSubject from "@/api/edusubject/edusubject";
+
 export default {
   components: {
     Information,
@@ -44,8 +45,10 @@ export default {
     return {
       active: 1,
 
-      //   如何接收子组件传值  TODO
+      //   接收子组件传值
       courseInfo: {},
+
+      courseId: "",
     };
   },
 
@@ -58,12 +61,31 @@ export default {
       }
     },
     next() {
-      if (this.active < 3) {
+      if (this.active <= 3) {
         this.active++;
       }
-      this.courseInfo = Information.courseInfo;
-      console.log(this.courseInfo);
+
+      // if (this.active > 2 && this.courseInfo != null) {
+      //   console.log(this.courseInfo);
+      //   // 向后端服务器传值 TODO
+      //   eduSubject.addCourseInfo(this.courseInfo).then((response) => {
+      //     this.courseId = response.data.courseId;
+      //     console.log(this.courseId);
+      //   });
+      // }
       //   this.$router.push({ path: "/edusubject/chapter/1" });
+    },
+    // 获取子组件课程信息传值
+    getCourseInfo(courseInfo) {
+      this.courseInfo = courseInfo;
+      console.log(this.courseInfo);
+      // 向后端服务器传值 TODO
+      eduSubject.addCourseInfo(this.courseInfo).then((response) => {
+        if (response.data.success) {
+          this.courseId = response.data.courseId;
+          this.$message.success("课程基本信息上传成功！！！");
+        }
+      });
     },
   },
 };
