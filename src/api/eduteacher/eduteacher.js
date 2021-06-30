@@ -66,5 +66,16 @@ export default {
             method: "post",
             data: eduTeacher,
         })
+    },
+
+    /**
+     * 获取不同级别的讲师数量
+     * @returns 
+     */
+    getLevelTeachers() {
+        return request({
+            url: "/eduservice/edu-teacher/getLevelTeachers",
+            method: "get",
+        })
     }
 }

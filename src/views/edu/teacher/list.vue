@@ -131,7 +131,7 @@
         <el-form-item label="讲师头衔">
           <el-select v-model="eduTeacher.level" placeholder="请选择">
             <el-option label="高级讲师" :value="1" />
-            <el-option label="首席讲师" value="2" />
+            <el-option label="首席讲师" :value="2" />
           </el-select>
         </el-form-item>
 

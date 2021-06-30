@@ -76,6 +76,14 @@ export const constantRoutes = [
         component: () => import('@/views/edu/subject/info'),
         meta: { title: '课程信息' }
       },
+
+      // 临时功能   TODO
+      {
+        path: 'temp',
+        name: 'Temp',
+        component: () => import('@/views/edu/subject/temp'),
+        meta: { title: '临时功能' }
+      },
     ]
   },
 
@@ -143,7 +151,7 @@ export const constantRoutes = [
     component: Layout,
     children: [
       {
-        path: 'https://panjiachen.github.io/vue-element-admin-site/#/',
+        path: 'https://github.com/flyerwge',
         meta: { title: 'External Link', icon: 'link' }
       }
     ]

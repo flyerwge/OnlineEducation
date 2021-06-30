@@ -25,10 +25,35 @@ export default {
         })
     },
 
+    /**
+     * 获取所有讲师列表
+     * @returns 
+     */
     getTeacherList() {
         return request({
             url: "/eduservice/edu-teacher/findAll",
             method: "get",
         })
-    }
+    },
+
+    /**
+     * 查询浏览次数前几位的课程
+     * @param {*} nums 
+     * @returns 
+     */
+    getTopCourse(nums) {
+        return request({
+            url: `/eduservice/edu-course/getTopCourse/${nums}`,
+            method: "get",
+        })
+    },
+
+    getCourseNum() {
+        return request({
+            url: "/eduservice/edu-course/getCourseNum",
+            method: "get",
+        })
+    },
+
+
 }
